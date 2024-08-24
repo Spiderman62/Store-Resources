@@ -1,53 +1,49 @@
 <template>
+	<base-card>
 	<li>
-		<base-card>
-			<header>
-				<h3>{{ title }}</h3>
-				<base-button mode="flat" @click="removeResource(id)">Delete</base-button>
-			</header>
+		<header>
+			<h1>{{ title }}</h1>
+			<base-button  @click="deleteResource(id)">Delete</base-button>
+		</header>
+		<section>
 			<p>{{ description }}</p>
-			<nav>
-				<a :href="link">View Resource</a>
-			</nav>
-		</base-card>
+		</section>
+		<menu>
+			<a :href="link">View resource</a>
+		</menu>
 	</li>
+	</base-card>
 </template>
 <script>
-import BaseCard from '../UI/BaseCard.vue'
 export default {
-  components: { BaseCard },
-	props:['id','title','description','link'],
-	inject:['removeResource']
+	props: ['id', 'title', 'description', 'link'],
+	inject:['deleteResource'],
 }
 </script>
 <style scoped>
-li{
-	margin: 10px 0;
+li {
+	list-style: none;
 }
-header{
+
+li header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
-p{
-	margin: .5rem 0;
-	font-size: 1.8rem;
-}
-h3{
-	font-size: 2.5rem;
-	margin: .5rem 0;
-}
-a{
-	text-decoration: none;
-	color: #ce5c00;
-	font-size: 1.6rem;
-}
-a:hover,
-a:active{
-	color: #c89300;
-}
-button{
-	font-size: 1.8rem;
 
+li h1 {
+	font-size: 2.5rem;
+	font-weight: 500;
+}
+
+li section p {
+	font-size: 1.8rem;
+	margin: 8px 0 12px;
+}
+
+li a {
+	font-size: 1.6rem;
+	text-decoration: none;
+	color: rgb(66, 211, 147);
 }
 </style>

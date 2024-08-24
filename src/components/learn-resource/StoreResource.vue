@@ -1,22 +1,16 @@
 <template>
 	<ul>
-		<LearnResource v-for="item in storeResources" :key="item.id" :id="item.id" :title="item.title" :description="item.description"
-			:link="item.link"></LearnResource>
+		<LearnResource v-for="resource in storeResources" :key="resource.id" :id="resource.id" :title="resource.title"
+			:description="resource.description" :link="resource.link"></LearnResource>
 	</ul>
+	
 </template>
 <script>
 import LearnResource from './LearnResource.vue';
 export default {
-	components:{
+	components: {
 		LearnResource
 	},
-	inject:['storeResources']
+	inject: ['storeResources']
 }
 </script>
-<style scoped>
-ul{
-	max-width: 800px;
-	margin: auto;
-	list-style: none;
-}
-</style>

@@ -1,14 +1,14 @@
 <template>
 	<div>
 		<slot></slot>
-	</div>	
+	</div>
 </template>
 <style scoped>
-	div{
-		border-radius: 12px;
-		box-shadow: 0 2px 8px rgb(195, 194, 194);
-		padding: 2.5rem;
-		margin: 2rem auto;
-		max-width: 800px;
-	}
+div {
+	width: 800px;
+	padding: 20px;
+	box-shadow: 0 0 50px 2px rgb(227, 226, 226) ;
+	border-radius: 8px;
+	margin: 20px auto;
+}
 </style>

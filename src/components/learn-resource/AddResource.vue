@@ -1,91 +1,83 @@
 <template>
-	<base-dialog v-if="valueIsInvalid" title="Invalid Input" @close="confirmError">
-	<template #default>
-		<p>Unfortunately, at least one input value is invalid.</p>
-		<p>Please check all inputs and make sure you enter at least</p>
-	</template>
-	<template #actions>
-		<base-button @click="confirmError">Close</base-button>
-	</template>
-	</base-dialog>
+	<base-popup v-if="isValueInvalid" title="Invalid value" @close="confirmClose">
+		<p>Unfortunately, there are some input value is incorrect!</p>
+		<p>Please, can not be blank and fill input must correct </p>
+	</base-popup>
 	<base-card>
-		<form @submit.prevent="submitData" action="">
+		<form action="" @submit.prevent="submitData">
 			<div class="input-box">
 				<label for="title">Title</label>
-				<input name="title" id="title" type="text" ref="title">
+				<input type="text" id="title" name="title" ref="title">
 			</div>
 			<div class="input-box">
 				<label for="description">Description</label>
-				<textarea name="description" id="description" rows="3" ref="description"></textarea>
+				<textarea name="description" id="description" cols="30" rows="3" ref="description"></textarea>
 			</div>
 			<div class="input-box">
-				<label for="link">Link</label>
-				<input name="link" id="link" type="url" ref="link">
+				<label for="url">Link</label>
+				<input type="url" id="url" name="url" ref="link">
 			</div>
-			<base-button type="submit">Add Resource</base-button>
+			<base-button type="submit">Add resource</base-button>
 		</form>
 	</base-card>
 </template>
 <script>
 export default {
-	inject: ['addResource'],
+	inject: ['addStoreResource'],
 	data() {
 		return {
-			valueIsInvalid: false
+			isValueInvalid: false
 		}
 	},
 	methods: {
 		submitData() {
-			const title = this.$refs.title.value;
-			const description = this.$refs.description.value;
-			const link = this.$refs.link.value;
-			if (title.trim() === '' || description.trim() === '' || link.trim() === '') {
-				this.valueIsInvalid = true;
+			const title = this.$refs.title.value.trim();
+			const description = this.$refs.description.value.trim();
+			const link = this.$refs.link.value.trim();
+			if (title === '' || description === '' || link === '') {
+				this.isValueInvalid = true;
 				return;
 			}
-			this.addResource(title, description, link);
+			this.addStoreResource(title, description, link);
 		},
-		confirmError(){
-			this.valueIsInvalid = false;
+		confirmClose(){
+			this.isValueInvalid = false;
 		}
-	}
+	},
 }
 </script>
-<style scoped>
+<style>
 label {
-	font-weight: bold;
 	display: block;
-	margin-block: .5rem;
 	font-size: 1.8rem;
+	margin-bottom: 4px;
 }
 
 .input-box {
-	margin: 1rem 0;
+	margin: 0 0 18px;
 }
 
 input {
-	padding: 0 15px 0 5px;
-	height: 40px;
-}
-
-textarea {
-	padding: 4px;
-}
-
-input,
-textarea {
-	display: block;
 	width: 100%;
-	font-family: inherit;
-	border: 1px solid #ccc;
+	height: 40px;
+	outline: none;
+	border: 1px solid black;
+	border-radius: 2px;
+	padding: 0 15px 0 5px;
 	font-size: 1.8rem;
+}
+
+textarea {
+	width: 100%;
+	height: 80px;
+	padding: 4px;
+	font-size: 1.8rem;
+	outline: none;
 }
 
 input:focus,
 textarea:focus {
-	outline: none;
-	border-color: #3a0061;
-	background-color: #f7ebff;
+	background-color: rgba(66, 211, 148, 0.142);
 }
 p{
 	font-size: 1.8rem;

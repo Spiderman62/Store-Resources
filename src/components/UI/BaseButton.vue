@@ -1,34 +1,34 @@
 <template>
-	<button :type="type" :class="mode">
+	<button :type="type" :class="isClass">
 		<slot></slot>
 	</button>
 </template>
 <script>
 export default {
-	props:['type','mode']
+	props:['type','isClass']
 }
 </script>
 <style scoped>
-button{
-	padding: 0.75rem 1.5rem;
-	font-size: 1.8rem;
-	background-color: #3a0061;
-	color: white;
-	cursor: pointer;
-	transition: .2s ease-in-out;
-	border: none;
-	border-radius: 2px;
-}
-button:hover,
-button:active{
-	background-color: #270041;
-}
-.flat{
-	background-color: transparent;
-	color: #3a0061;
-}
-.flat:hover,
-.flat:active{
-	background-color: #edd2ff;
-}
+	button{
+		padding: 12px 24px;
+		font-size: 1.8rem;
+		border: none;
+		background-color: rgba(37, 177, 58, 0.345);
+		cursor: pointer;
+		transition: .2s ease-in-out;
+		border-radius: 2px;
+	}
+	button:hover{
+		background-color: rgb(69,211,148);
+		color:white;
+	}
+	.flat{
+		background: transparent;
+		color: black;
+		transition: .2s ease-in-out;
+	}
+	.flat:hover{
+		background-color: rgba(37, 177, 58, 0.345);
+		color: black;
+	}
 </style>
